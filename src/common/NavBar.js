@@ -1,44 +1,39 @@
 import React, { useState } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
-} from "reactstrap";
+import { NavLink } from "react-router-dom";
+import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
 
 function NavBar() {
   return (
-    <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Friender</NavbarBrand>
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <NavLink to="/matches">Matches</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/messages">Messages</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/login">Login</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/signup">Signup</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to="/logout">Logout</NavLink>
-          </NavItem>
-        </Nav>
-        <NavbarText>Simple Text</NavbarText>
-      </Navbar>
-    </div>
+    <Navbar color="light" light expand="md">
+      <NavbarBrand href="/">Friender</NavbarBrand>
+      <Nav className="mr-auto" navbar>
+        <NavItem className="nav-item mr-4">
+          <NavLink className="nav-link" to="/matches">
+            Matches
+          </NavLink>
+        </NavItem>
+        <NavItem className="nav-item mr-4">
+          <NavLink className="nav-link" to="/messages">
+            Messages
+          </NavLink>
+        </NavItem>
+        <NavItem className="nav-item mr-4">
+          <NavLink className="nav-link" to="/login">
+            Login
+          </NavLink>
+        </NavItem>
+        <NavItem className="nav-item mr-4">
+          <NavLink className="nav-link" to="/signup">
+            Signup
+          </NavLink>
+        </NavItem>
+        <NavItem className="nav-item mr-4">
+          <NavLink className="nav-link" to="/logout">
+            Logout
+          </NavLink>
+        </NavItem>
+      </Nav>
+    </Navbar>
   );
 }
 
