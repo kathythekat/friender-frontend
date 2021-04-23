@@ -85,19 +85,21 @@ class FrienderApi {
     return res.markRead;
   }
 
-  static async sendToS3(file) {
-    const res = await axios.post({
-      url:`${BASE_URL}/images`,
+  static async sendToS3(data) {
+    console.log("hello!");
+    console.log(`${BASE_URL}`);
+    const res = await axios({
+      url: `${BASE_URL}/images`,
+      method: "post",
       headers: {
-        Authorization: `Bearer ${FrienderApi.token}`,
-        'Content-Type': 'multipart/form-data'
-      }
+        "Content-Type": "multipart/form-data",
+      },
+      data,
     });
     return res.imagePath;
   }
 }
 
 FrienderApi.token =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyMiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MTkxOTc4NjV9.V-Pl455DSyUeUKRpEzmbDSVMrMBshetK8EZRGIhCOLU";
-
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyMyIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MTkyMDM0NzJ9.gMufruMuI_f6bmfSnsINAQoHK47kDp-h9J8p9-VTgRA";
 export default FrienderApi;
