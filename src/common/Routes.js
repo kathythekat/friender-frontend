@@ -1,4 +1,5 @@
 import { Route, Switch, Redirect } from "react-router-dom";
+import EditProile from "../Users/EditProfile";
 import Home from "./Home";
 
 function Routes({ signUp, loginUser }) {
@@ -17,9 +18,9 @@ function Routes({ signUp, loginUser }) {
       {/* <Route exact path="/signup">
         <Signup signUp={signUp} />
       </Route> */}
-      {/* <Route exact path="/profile">
-        {isAuthenticated ? <Profile /> : <Redirect to="/profile" />}
-      </Route> */}
+      <Route exact path="/profile">
+        <EditProile/>
+      </Route>
       <Redirect to="/" />
     </Switch>
   );

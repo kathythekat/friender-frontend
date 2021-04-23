@@ -16,6 +16,29 @@ function App() {
   );
   const [allUsers, setAllUsers] = useState(null);
 
+  function checkToken() {
+    if(localStorage.getItem('token')) {
+      const lToken = localStorage.getItem('token');
+      FrienderApi.token = lToken;
+      return lToken;
+    }
+    return null;
+  }
+
+   //pass down setter function instead of wrapper function. 
+  function updateToken(token) {
+    setToken(t => token);
+    FrienderApi.token = token;
+    localStorage.setItem('token', token);
+  }
+
+  function removeToken() {
+    setToken(null);
+    FrienderApi.token = null;
+    localStorage.removeItem('token');
+  }
+
+
   async function getAllUsers() {
     const users = await FrienderApi.getAllUsers();
     setAllUsers(
@@ -41,9 +64,6 @@ function App() {
     if (currentUser) getAllUsers();
   }, [currentUser]);
 
-  console.log("current user", currentUser);
-  console.log("all users", allUsers);
-
   function filterUsers(usernameToRemove) {
     const updatedUsers = allUsers.filter((u) => u !== u.usernameToRemove);
     setAllUsers(updatedUsers);
@@ -55,13 +75,18 @@ function App() {
     FrienderApi.token = token;
   }
 
+  async function updateUser(formData) {
+    const response = await FrienderApi.update(currentUser.username, formData)
+    setCurrentUser(currentUser => ({...currentUser, response}))
+  }
+
   return (
     <BrowserRouter>
       <UserContext.Provider
-        value={{ updateToken, filterUsers, allUsers, currentUser }}
+        value={{ updateUser, updateToken, filterUsers, allUsers, currentUser }}
       >
         <NavBar />
-        <Routes />
+        <Routes updateToken={updateToken} removeToken={removeToken}/>
       </UserContext.Provider>
     </BrowserRouter>
   );
